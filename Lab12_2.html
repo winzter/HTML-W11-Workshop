@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function send(){
+            let request = new XMLHttpRequest();
+            request.onreadystatechange = ()=>{
+                if(request.readyState == 4 && request.status == 200){
+                    document.getElementById("result").innerHTML = request.responseText;
+                }
+            }
+            let keyword = document.getElementById("member").value;
+            let url = "Lab12_2.php?keyword=" + keyword;
+
+            request.open("GET",url,true);
+            request.send();
+        }
+    </script>
+</head>
+<body>
+    ค้นหาสมาชิก : <input type="text" id="member" onkeyup="send()"><br>
+    <div id="result"></div>
+</body>
+</html>

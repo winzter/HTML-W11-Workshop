@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function send(){
+            httpRequest = new XMLHttpRequest();
+            httpRequest.onreadystatechange = ()=>{
+                if(httpRequest.readyState == 4 && httpRequest.status == 200){
+                    document.getElementById("result").innerHTML = httpRequest.responseText;
+                }
+            }
+
+            let a = document.getElementById("a").value;
+            let b = document.getElementById("b").value;
+            let url = "Operation.php?a=" + a + "&b=" + b;
+
+            httpRequest.open("GET",url);
+            httpRequest.send();
+        }
+    </script>
+</head>
+<body>
+    a = <input type="text" id="a" onkeyup="send()" value="0" min="0" pattern="%d"><br>
+    b = <input type="text" id="b" onkeyup="send()" value="0" min="0" pattern="%d"><br>
+    <span id="result"></span>
+</body>
+</html>

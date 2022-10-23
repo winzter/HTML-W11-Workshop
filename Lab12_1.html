@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function send(){
+            request = new XMLHttpRequest();
+            request.onreadystatechange = ()=>{
+                if(request.readyState == 4 && request.status == 200){
+                    document.getElementById("result").innerHTML = request.responseText;
+                }
+            }
+
+            let mango = document.getElementById("mango").value;
+            let orange = document.getElementById("orange").value;
+            let banana = document.getElementById("banana").value;
+
+            let url = "Lab12_1.php?mango=" + mango + "&orange=" + orange + "&banana=" + banana;
+
+            request.open("GET",url,true);
+            request.send();
+        }
+    </script>
+</head>
+<body>
+    <h2>บันทึกการขาย</h2>
+    มะม่วง กก.ละ 30 บาท ขายได้ <input type="number" onkeyup="send()" id="mango"><br>
+    ส้ม กก.ละ 70 บาท ขายได้ <input type="number" onkeyup="send()" id="orange"><br>
+    กล้วย หวีละ 30 บาท ขายได้ <input type="number" onkeyup="send()" id="banana"><br>
+    <span id="result"></span>
+</body>
+</html>
